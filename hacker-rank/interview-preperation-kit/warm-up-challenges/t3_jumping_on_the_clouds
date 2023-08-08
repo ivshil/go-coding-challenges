@@ -1,0 +1,22 @@
+package main
+
+// ref https://www.hackerrank.com/challenges/jumping-on-the-clouds
+func jumpingOnClouds(c []int32) int32 {
+	jumps := int32(0)
+	curPos := int32(0)
+	for curPos < int32(len(c)-2) {
+
+		if c[curPos] == 0 {
+			jumps++
+			curPos += 2
+		} else {
+			jumps++
+			curPos++
+		}
+	}
+	if curPos < int32(len(c)-1) {
+		jumps++
+		curPos++
+	}
+	return jumps
+}

@@ -1,0 +1,34 @@
+package main
+
+// ref https://www.hackerrank.com/challenges/repeated-string
+func repeatedString(s string, n int64) int64 {
+	count := int64(0)
+	lenS := int64(len(s))
+	numbersOfA := int64(0)
+	closestMultiple := (n + lenS - 1) / lenS
+	result := closestMultiple * lenS
+
+	if n > lenS {
+		for _, char := range s {
+			if char == 'a' {
+				count++
+			}
+		}
+	}
+
+	numbersOfA = (closestMultiple - 1) * count
+	if result > n {
+		num := result - n
+		for i, char := range s {
+			if int64(i) > num {
+				break
+			}
+			if char == 'a' {
+				numbersOfA++
+			}
+		}
+	}
+
+	return int64(numbersOfA)
+
+}
