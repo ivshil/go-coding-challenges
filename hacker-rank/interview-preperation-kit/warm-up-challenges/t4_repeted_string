@@ -5,9 +5,8 @@ func repeatedString(s string, n int64) int64 {
 	count := int64(0)
 	lenS := int64(len(s))
 	numbersOfA := int64(0)
-	closestMultiple := (n + lenS - 1) / lenS
-	result := closestMultiple * lenS
-
+	quotient := n / lenS
+	remainder := n % lenS
 	if n > lenS {
 		for _, char := range s {
 			if char == 'a' {
@@ -16,19 +15,16 @@ func repeatedString(s string, n int64) int64 {
 		}
 	}
 
-	numbersOfA = (closestMultiple - 1) * count
-	if result > n {
-		num := result - n
-		for i, char := range s {
-			if int64(i) > num {
-				break
-			}
-			if char == 'a' {
-				numbersOfA++
-			}
+	numbersOfA = quotient * count
+	for _, char := range s {
+		if remainder == 0 {
+			break
 		}
+		if char == 'a' {
+			numbersOfA++
+		}
+		remainder--
+
 	}
-
-	return int64(numbersOfA)
-
+	return numbersOfA
 }
